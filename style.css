@@ -1,0 +1,671 @@
+/* 全局重置与变量 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-black: #0f0f0f;
+    --card-bg: #1a1a1a;
+    --text-light: #f0f0f0;
+    --text-gray: #888;
+    --text-beige: #d4c5b0;
+    --accent-gold: #c7a97b;
+    --white-border: 10px solid #ffffff;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-light);
+    /* 离线打不开 Google Fonts 时，自动回退到系统等宽字体，不会变成难看的默认宋体 */
+    font-family: 'Roboto Mono', 'Consolas', 'Courier New', monospace;
+    overflow-x: hidden;
+}
+
+/* 图片还没放进来时，用深色底 + 微光网格兜底，避免出现破图框 */
+.card-image,
+.grid-images,
+.mini-image,
+.mid-image {
+    background-color: #161616;
+    background-image:
+        linear-gradient(45deg, #1c1c1c 25%, transparent 25%, transparent 75%, #1c1c1c 75%),
+        linear-gradient(45deg, #1c1c1c 25%, transparent 25%, transparent 75%, #1c1c1c 75%);
+    background-size: 24px 24px;
+    background-position: 0 0, 12px 12px;
+}
+
+/* 1. 顶部极小导航栏 */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: var(--bg-black);
+    border-bottom: 1px solid #222;
+}
+
+.top-header .logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    border: 1px solid #555;
+    padding: 2px 10px;
+}
+
+.top-nav a {
+    color: #555;
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.top-nav a:hover {
+    color: var(--text-light);
+}
+
+/* 2. 首屏大图区域 */
+.hero-section {
+    padding: 30px 40px 15px 40px; /* 黑色留白 */
+}
+
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* 水平居中 */
+    border: 12px solid #ffffff; /* 白色粗边框 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.9), 0 0 20px rgba(199, 169, 123, 0.2);
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 500px; /* 首屏大图高度 */
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* 中文字体回退链：保证中文不会掉进难看的默认宋体 */
+:root {
+    --font-cn: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', 'Source Han Sans SC', 'Noto Sans CJK SC', sans-serif;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    z-index: 2;
+    width: max-content;
+    max-width: 88%;
+}
+
+.hero-text h1 {
+    font-family: 'Oswald', 'Arial Narrow', sans-serif;
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    /* 中文没有 Oswald 字形，用系统黑体，字距必须收窄否则会裂开 */
+    line-height: 1.18;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.6);
+}
+
+.hero-title-cn {
+    display: block;
+    font-family: var(--font-cn);
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: 0.5em;
+    text-indent: 0.5em; /* 抵消最后一字的字距，视觉居中 */
+    color: var(--accent-gold);
+    margin-top: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+}
+
+/* 标题与副标题之间的金色细线 */
+.hero-text h1::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 1px;
+    background: var(--accent-gold);
+    opacity: 0.75;
+    margin: 16px auto 0 auto;
+}
+
+.hero-sub {
+    font-family: 'Roboto Mono', 'Consolas', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.9);
+    margin: 16px 0 22px 0;
+    line-height: 1.6;
+}
+
+.hero-sub-cn {
+    display: block;
+    font-family: var(--font-cn);
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    text-indent: 0.32em;
+    color: rgba(255,255,255,0.72);
+    margin-top: 7px;
+}
+
+.hero-badge {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.85);
+    padding: 9px 22px;
+    font-family: 'Oswald', 'Arial Narrow', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(2px);
+    transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+.hero-wrapper:hover .hero-badge {
+    background: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: #0f0f0f;
+}
+
+/* 3. 大图下方的黑色导航条 */
+.middle-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 0;
+    background-color: var(--bg-black);
+    margin-bottom: 30px;
+}
+
+.middle-nav a {
+    color: #aaa;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    font-size: 14px;
+    padding: 5px 15px;
+    transition: all 0.3s;
+}
+
+.middle-nav a.active {
+    background-color: var(--accent-gold);
+    color: #000;
+    font-weight: bold;
+}
+
+.middle-nav a:hover {
+    color: #fff;
+}
+
+/* 4. 主体内容区 */
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 80px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.row {
+    display: flex;
+    gap: 30px;
+}
+
+/* 卡片通用样式与悬浮效果 */
+.card {
+    background-color: var(--card-bg);
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s;
+    position: relative;
+    border: 1px solid #222;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 30px rgba(199, 169, 123, 0.15);
+    border-color: var(--accent-gold);
+}
+
+/* 第一行：左侧大框 */
+.card-large-left {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-large-left .card-image {
+    position: relative;   /* 让下面的文字标签能定位到图片上 */
+    height: 250px;
+    overflow: hidden;
+}
+
+/* 叠在图片正中间的标签：英文在上，中文在下 */
+.film-still-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;          /* 鼠标穿透，不影响卡片悬浮动效 */
+    text-shadow:
+        0 2px 14px rgba(0, 0, 0, 0.9),
+        0 0 34px rgba(0, 0, 0, 0.7);
+}
+
+.film-still-en {
+    font-family: 'Oswald', 'Arial Narrow', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-indent: 6px;              /* 抵消最后一个字的字距，视觉居中 */
+    color: #ffffff;
+    white-space: nowrap;
+    transition: letter-spacing 0.45s ease, color 0.45s ease;
+}
+
+/* 中文：单独一行，字距必须收窄否则会裂开 */
+.film-still-cn {
+    display: block;
+    margin-top: 7px;
+    font-family: var(--font-cn);
+    font-size: 14px;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;           /* 同样抵消末字字距 */
+    color: rgba(199, 169, 123, 0.96);   /* 淡金色，呼应页面主题 */
+    white-space: nowrap;
+}
+
+/* 鼠标悬停卡片时，英文字距拉开并变金色，呼应其他卡片的动效 */
+.card-large-left:hover .film-still-en {
+    letter-spacing: 11px;
+    text-indent: 11px;
+    color: var(--accent-gold);
+}
+
+.card-large-left .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+}
+
+.card-large-left:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-icons {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 10px;
+    background: #151515;
+}
+
+.icon-item {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #888;
+    transition: color 0.3s;
+}
+
+.card:hover .icon-item {
+    color: var(--accent-gold);
+}
+
+.icon-item span {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* 第一行：右侧大框 */
+.card-large-right {
+    flex: 4;
+    display: flex;
+}
+
+.split-left {
+    flex: 4;
+    background-color: var(--text-beige);
+    color: #111;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.split-left h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.split-left p {
+    font-size: 12px;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+.split-right {
+    flex: 6;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.split-right h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 36px;
+    color: #fff;
+}
+
+.split-right h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.split-right p {
+    font-size: 11px;
+    color: #aaa;
+    line-height: 1.6;
+}
+
+/* ===== 金句排版：金句 / 英文 / 中文 / 出处 各占一行 ===== */
+.quote-block {
+    margin: 4px 0 2px 0;
+    line-height: 1.75;
+}
+
+.quote-label {
+    display: block;
+    font-family: var(--font-cn);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent-gold);
+    margin-bottom: 5px;
+}
+
+.quote-en {
+    font-size: 11.5px;
+    color: #e6e6e6;
+}
+
+.quote-cn {
+    display: block;
+    font-family: var(--font-cn);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: #cfcfcf;
+    margin-top: 3px;
+}
+
+.quote-source {
+    display: block;
+    font-family: var(--font-cn);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: rgba(199, 169, 123, 0.85);
+    margin-top: 6px;
+}
+
+.mini-image {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.mini-image img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.mini-text {
+    font-size: 9px;
+    color: #777;
+}
+
+/* 第二行：小框通用 */
+.row-2 {
+    height: 260px;
+}
+
+.card-small {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 第二行：左侧小框 */
+/* 原来是放数字的（如 "5"），现在放中文短语，字号和中文字体相应调整 */
+.number-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: var(--font-cn);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 5px;
+}
+
+.grid-images {
+    display: flex;
+    gap: 5px;
+    width: 80%;
+    margin-top: 30px;
+}
+
+.grid-images img {
+    width: 33%;
+    height: 120px;
+    object-fit: cover;
+    filter: grayscale(80%);
+    transition: filter 0.4s;
+}
+
+.card:hover .grid-images img {
+    filter: grayscale(0%);
+}
+
+/* 第二行：中间小框 */
+.card-mid {
+    flex: 2;
+    overflow: hidden;
+}
+
+.mid-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.mid-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+}
+
+.card-mid:hover .mid-image img {
+    transform: scale(1.05);
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    padding: 10px 15px;
+    border-left: 3px solid var(--accent-gold);
+}
+
+.overlay-text h4 {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+}
+
+.overlay-text p {
+    font-size: 10px;
+    color: #ccc;
+}
+
+.slider-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    padding: 10px;
+}
+
+.slider-control:hover {
+    opacity: 1;
+    color: var(--accent-gold);
+}
+
+.slider-control.left { left: 10px; }
+.slider-control.right { right: 10px; }
+
+/* 第二行：右侧小框（圆形统计） */
+.card-circle {
+    position: relative;
+}
+
+.circle-chart {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #333;
+    border-top-color: var(--accent-gold);
+    border-right-color: var(--accent-gold);
+    transform: rotate(45deg);
+    position: relative;
+    transition: transform 0.6s;
+}
+
+.card-circle:hover .circle-chart {
+    transform: rotate(225deg);
+}
+
+.circle-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px dashed #555;
+}
+
+.circle-label {
+    margin-top: 20px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+    font-size: 12px;
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+    padding: 2px 10px;
+}
+
+/* 响应式适配 */
+@media (max-width: 900px) {
+    .row {
+        flex-direction: column;
+    }
+    .row-2 {
+        height: auto;
+    }
+    .card-small {
+        /* 关键：.card-small 有 flex:1（即 flex-basis:0%），在列方向会压过 height，
+           所以必须同时把 flex-basis 改成 auto，height 才会生效。
+           原来卡片被压到 152px，「最喜欢」会和下面三联图重叠。 */
+        flex: 0 0 auto;
+        height: 290px;
+    }
+    .carousel {
+        height: 300px;
+    }
+    .hero-text h1 {
+        font-size: 28px;
+    }
+    .content-container {
+        padding: 0 20px 40px 20px;
+    }
+    .hero-section {
+        padding: 15px 20px 10px 20px;
+    }
+    /* 手机端：标签字号缩小，避免撑出图片 */
+    .film-still-en {
+        font-size: 20px;
+        letter-spacing: 4px;
+        text-indent: 4px;
+    }
+    .film-still-cn {
+        font-size: 12px;
+        letter-spacing: 0.34em;
+        text-indent: 0.34em;
+        margin-top: 5px;
+    }
+    /* 手机端：金句字号略缩 */
+    .quote-en {
+        font-size: 11px;
+    }
+    .quote-cn {
+        font-size: 11px;
+    }
+}

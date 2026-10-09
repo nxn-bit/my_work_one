@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Film Archive</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入复古风格的字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+    <!-- 图片兜底：真图还没放进 assets/ 时，自动换成同名 .svg 占位图。
+         必须写在 <body> 之前，否则部分图片的加载失败事件会早于监听器触发。 -->
+    <script>
+        window.__applyFallback = function (el) {
+            if (el.dataset.fallbackApplied === 'true') return;
+            el.dataset.fallbackApplied = 'true';
+            el.onerror = null;
+            el.src = el.dataset.fallback;
+        };
+    </script>
+</head>
+<body>
+
+    <!-- 1. 顶部极小导航栏 -->
+    <header class="top-header">
+        <div class="logo">CINE LOG</div>
+        <nav class="top-nav">
+            <a href="#">ABOUT</a>
+            <a href="#">PORTFOLIO</a>
+            <a href="#">TEAM</a>
+            <a href="#">SERVICE</a>
+        </nav>
+    </header>
+
+    <!-- 2. 首屏大图区域（带黑留白和白边） -->
+    <section class="hero-section">
+        <div class="hero-wrapper">
+            <!-- 轮播图（真图放 assets/ 同名文件即可，script.js 会自动加载） -->
+            <div class="carousel">
+                <div class="slide active" data-bg="assets/hero-1.jpg" style="background-image: url('assets/hero-1.svg');"></div>
+                <div class="slide" data-bg="assets/hero-2.jpg" style="background-image: url('assets/hero-2.svg');"></div>
+                <div class="slide" data-bg="assets/hero-3.jpg" style="background-image: url('assets/hero-3.svg');"></div>
+            </div>
+            <!-- 叠加文字 -->
+            <div class="hero-text">
+                <h1>CINEMA DIARY<span class="hero-title-cn">观影日记</span></h1>
+                <p class="hero-sub">TRAVEL THROUGH LIGHT AND SHADOW<span class="hero-sub-cn">穿行光影之间</span></p>
+                <div class="hero-badge">COLLECT MOMENTS FROM MOVIES</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 大图下方的黑色导航条 -->
+    <nav class="middle-nav">
+        <a href="#">ABSTRACT</a>
+        <a href="#" class="active">HOME</a>
+        <a href="#">ABOUT</a>
+        <a href="#">PORTFOLIO</a>
+        <a href="#">TEAM</a>
+        <a href="#">SERVICE</a>
+    </nav>
+
+    <!-- 4. 主体内容区（6个框框） -->
+    <main class="content-container">
+
+        <!-- 第一行 -->
+        <div class="row row-1">
+            <!-- 左侧大框 -->
+            <div class="card card-large-left">
+                <div class="card-image">
+                    <img src="assets/film-still.jpg" data-fallback="assets/film-still.svg" onerror="__applyFallback(this)" alt="Film Still">
+                    <!-- 叠在图片正中间的标签 -->
+                    <div class="film-still-label">
+                        <span class="film-still-en">FILM STILL</span>
+                        <span class="film-still-cn">电影剧照</span>
+                    </div>
+                </div>
+                <div class="card-icons">
+                    <div class="icon-item"><span>🎬</span><br>DIRECTOR</div>
+                    <div class="icon-item"><span>📅</span><br>DATE</div>
+                    <div class="icon-item"><span>⏱️</span><br>RUNTIME</div>
+                    <div class="icon-item"><span>⭐</span><br>RATING</div>
+                    <div class="icon-item"><span>💻</span><br>PLATFORM</div>
+                </div>
+            </div>
+
+            <!-- 右侧大框 -->
+            <div class="card card-large-right">
+                <div class="split-left">
+                    <h3>CINEMA CARD</h3>
+                    <p>MY PERSONAL FILM ARCHIVE</p>
+                    <p>EST. 2026.10</p>
+                </div>
+                <div class="split-right">
+                    <h2>142%</h2>
+                    <h3>CINEMA DIARY</h3>
+                    <!-- 金句：每部分各占一行 -->
+                    <div class="quote-block">
+                        <span class="quote-label">金句：</span>
+                        <span class="quote-en">After all,tomorrow is another day.</span><br>
+                        <span class="quote-cn">毕竟，明天又是新的一天</span>
+                        <span class="quote-source">--《乱世佳人》</span>
+                    </div>
+                    <div class="mini-image">
+                        <img src="assets/mini.jpg" data-fallback="assets/mini.svg" onerror="__applyFallback(this)" alt="mini">
+                        <p class="mini-text">Cinema Diary<br>MY PERSONAL FILM ARCHIVE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二行 -->
+        <div class="row row-2">
+            <!-- 左侧小框 -->
+            <div class="card card-small">
+                <div class="number-box">最喜欢</div>
+                <div class="grid-images">
+                    <img src="assets/grid-1.jpg" data-fallback="assets/grid-1.svg" onerror="__applyFallback(this)" alt="1">
+                    <img src="assets/grid-2.jpg" data-fallback="assets/grid-2.svg" onerror="__applyFallback(this)" alt="2">
+                    <img src="assets/grid-3.jpg" data-fallback="assets/grid-3.svg" onerror="__applyFallback(this)" alt="3">
+                </div>
+            </div>
+
+            <!-- 中间小框（带左右箭头） -->
+            <div class="card card-small card-mid">
+                <div class="slider-control left">❮</div>
+                <div class="mid-image">
+                    <img src="assets/mid.jpg" data-fallback="assets/mid.svg" onerror="__applyFallback(this)" alt="Mid Image">
+                    <div class="overlay-text">
+                        <h4>CINEMA DIARY</h4>
+                        <p>MY PERSONAL FILM ARCHIVE</p>
+                    </div>
+                </div>
+                <div class="slider-control right">❯</div>
+            </div>
+
+            <!-- 右侧小框（圆形统计） -->
+            <div class="card card-small card-circle">
+                <div class="circle-chart">
+                    <div class="circle-inner"></div>
+                </div>
+                <div class="circle-label">DATA</div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
