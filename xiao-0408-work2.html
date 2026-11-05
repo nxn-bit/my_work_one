@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贝斯社 · 2026 春季招新 | 低音不低头</title>
+<meta name="description" content="贝斯社 2026 年春季招新主页：社团简介、活动安排、风采展示、社员故事与在线报名。">
+<style>
+  :root{
+    --bg:#08090c;
+    --bg-2:#0c0e13;
+    --panel:#11141b;
+    --panel-2:#171b24;
+    --line:rgba(46,230,200,.16);
+    --line-2:rgba(255,255,255,.07);
+    --neon:#2ee6c8;
+    --neon-deep:#12a08b;
+    --hot:#ff3d71;
+    --amber:#ffb020;
+    --text:#e9edf3;
+    --dim:#8b95a5;
+    --sans:-apple-system,"Segoe UI","Microsoft YaHei","PingFang SC","Hiragino Sans GB",system-ui,sans-serif;
+    --mono:"SF Mono",Consolas,"Cascadia Mono",monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    padding-top:66px;
+    background:
+      radial-gradient(900px 520px at 8% -8%, rgba(46,230,200,.10), transparent 60%),
+      radial-gradient(800px 460px at 94% 4%, rgba(255,61,113,.09), transparent 62%),
+      radial-gradient(900px 600px at 50% 112%, rgba(46,230,200,.06), transparent 62%),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ================= 顶部固定栏 ================= */
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(8,9,12,.82);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line-2);
+  }
+  .bar{
+    max-width:1180px; margin:0 auto; padding:0 24px;
+    height:66px; display:flex; align-items:center; gap:18px;
+  }
+
+  /* 左上角：背景音乐按钮 */
+  .music-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    height:40px; padding:0 16px;
+    background:linear-gradient(135deg, rgba(46,230,200,.16), rgba(46,230,200,.05));
+    border:1px solid rgba(46,230,200,.45);
+    border-radius:999px;
+    color:var(--neon);
+    font-family:var(--sans); font-size:14px; font-weight:600;
+    letter-spacing:.5px;
+    cursor:pointer;
+    transition:all .26s ease;
+    flex:0 0 auto;
+  }
+  .music-btn:hover{
+    background:linear-gradient(135deg, rgba(46,230,200,.3), rgba(46,230,200,.12));
+    border-color:var(--neon);
+    box-shadow:0 0 22px rgba(46,230,200,.35);
+  }
+  .music-btn .music-icon{ font-size:13px; min-width:12px; text-align:center; }
+  .eq{ display:inline-flex; align-items:flex-end; gap:2.5px; height:14px; }
+  .eq i{ display:block; width:2.5px; height:3px; background:var(--neon); border-radius:1px; }
+  .music-btn.playing .eq i{ animation:eqbar .85s ease-in-out infinite; }
+  .music-btn.playing .eq i:nth-child(2){ animation-delay:.14s; }
+  .music-btn.playing .eq i:nth-child(3){ animation-delay:.3s; }
+  .music-btn.playing .eq i:nth-child(4){ animation-delay:.46s; }
+  @keyframes eqbar{ 0%,100%{ height:3px; } 50%{ height:14px; } }
+
+  /* 社徽 */
+  .brand{
+    display:inline-flex; align-items:center; gap:11px;
+    text-decoration:none; color:var(--text); flex:0 0 auto;
+  }
+  .mark{
+    width:36px; height:36px; display:grid; place-items:center;
+    border-radius:9px;
+    background:linear-gradient(140deg, var(--neon), var(--neon-deep));
+    color:#05201c;
+    font-family:var(--mono); font-size:15px; font-weight:800; letter-spacing:-.5px;
+    box-shadow:0 0 18px rgba(46,230,200,.4);
+  }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.2; }
+  .brand-cn{ font-size:17px; font-weight:800; letter-spacing:2px; }
+  .brand-en{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:2.6px;
+    color:var(--dim);
+  }
+
+  /* 五个锚点链接 */
+  .nav{ margin-left:auto; display:flex; align-items:center; gap:2px; flex-wrap:wrap; }
+  .nav a{
+    position:relative;
+    padding:8px 14px;
+    color:var(--dim); text-decoration:none;
+    font-size:15px; font-weight:500;
+    border-radius:7px;
+    transition:all .22s ease;
+    white-space:nowrap;
+  }
+  .nav a:hover{ color:var(--neon); background:rgba(46,230,200,.08); }
+
+  /* ================= 版心 ================= */
+  .wrap{ max-width:980px; margin:0 auto; padding:0 24px; }
+  section{ scroll-margin-top:86px; }
+
+  /* ================= 首屏 ================= */
+  .hero{
+    position:relative;
+    padding:104px 0 92px;
+    text-align:center;
+    overflow:hidden;
+    border-bottom:1px solid var(--line-2);
+  }
+  .strings{ position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+  .strings i{
+    position:absolute; left:-5%; right:-5%; height:1px;
+    background:linear-gradient(90deg, transparent, rgba(46,230,200,.6), rgba(255,61,113,.4), transparent);
+    animation:strum 4.2s ease-in-out infinite;
+  }
+  .strings i:nth-child(1){ top:20%; }
+  .strings i:nth-child(2){ top:38%; animation-delay:.4s; }
+  .strings i:nth-child(3){ top:56%; animation-delay:.8s; }
+  .strings i:nth-child(4){ top:74%; animation-delay:1.2s; }
+  @keyframes strum{
+    0%,100%{ transform:scaleY(1); opacity:.45; }
+    50%{ transform:scaleY(5); opacity:1; }
+  }
+
+  .hero-inner{ position:relative; z-index:1; }
+  .kicker{
+    display:inline-block;
+    margin:0 0 20px;
+    padding:5px 16px;
+    font-family:var(--mono); font-size:12.5px; letter-spacing:3px;
+    color:var(--neon);
+    border:1px solid rgba(46,230,200,.35);
+    border-radius:999px;
+    background:rgba(46,230,200,.06);
+  }
+  .hero h1{
+    margin:0;
+    font-size:clamp(56px, 12vw, 118px);
+    font-weight:800;
+    line-height:1.05;
+    letter-spacing:-2px;
+    background:linear-gradient(160deg, #ffffff 12%, var(--neon) 58%, var(--neon-deep) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero-en{
+    margin:10px 0 0;
+    font-family:var(--mono);
+    font-size:clamp(13px, 2.4vw, 18px);
+    letter-spacing:clamp(6px, 1.6vw, 14px);
+    text-indent:clamp(6px, 1.6vw, 14px);
+    color:rgba(46,230,200,.6);
+    font-weight:600;
+  }
+  .hero-sub{
+    max-width:640px; margin:26px auto 0;
+    color:var(--dim); font-size:16.5px; line-height:1.95;
+  }
+  .hero-actions{ margin-top:38px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+  .btn{
+    display:inline-block; padding:13px 34px;
+    font-family:var(--sans); font-size:15.5px; font-weight:700;
+    text-decoration:none; cursor:pointer;
+    border-radius:10px;
+    transition:all .26s ease;
+  }
+  .btn-solid{
+    background:linear-gradient(135deg, var(--neon), var(--neon-deep));
+    color:#04211d;
+    border:1px solid transparent;
+    box-shadow:0 8px 26px rgba(46,230,200,.28);
+  }
+  .btn-solid:hover{ transform:translateY(-2px); box-shadow:0 12px 34px rgba(46,230,200,.45); }
+  .btn-line{
+    background:transparent; color:var(--text);
+    border:1px solid var(--line-2);
+  }
+  .btn-line:hover{ border-color:var(--neon); color:var(--neon); background:rgba(46,230,200,.06); }
+
+  /* ================= 内容区块 ================= */
+  .block{ padding:78px 0; border-bottom:1px solid var(--line-2); }
+
+  .block-head{ display:flex; align-items:center; gap:14px; margin-bottom:6px; flex-wrap:wrap; }
+  .block-num{
+    font-family:var(--mono); font-size:13px; font-weight:700;
+    letter-spacing:1px;
+    color:var(--neon);
+    background:rgba(46,230,200,.1);
+    border:1px solid rgba(46,230,200,.32);
+    border-radius:6px;
+    padding:3px 9px;
+    line-height:1.8;
+  }
+  .block-title{
+    margin:0;
+    font-size:clamp(24px, 4.2vw, 32px);
+    font-weight:800;
+    letter-spacing:1px;
+  }
+  .block-en{
+    margin-left:auto;
+    font-family:var(--mono); font-size:12px;
+    letter-spacing:2.4px; color:rgba(139,149,165,.55);
+    text-transform:uppercase; white-space:nowrap;
+  }
+  .underline{
+    height:2px; width:64px; margin:18px 0 32px;
+    background:linear-gradient(90deg, var(--neon), transparent);
+    border-radius:2px;
+  }
+
+  .block h3{
+    margin:36px 0 12px;
+    font-size:19.5px; font-weight:800; letter-spacing:.5px;
+    color:var(--text);
+    padding-left:14px;
+    border-left:3px solid var(--neon);
+    line-height:1.6;
+  }
+  .block p{ margin:0 0 16px; color:#c7cedb; }
+  .lead{
+    color:var(--text) !important;
+    font-size:17px;
+    padding:20px 24px;
+    background:linear-gradient(135deg, rgba(46,230,200,.09), rgba(46,230,200,.02));
+    border-left:3px solid var(--neon);
+    border-radius:10px;
+  }
+  em.key{ font-style:normal; color:var(--neon); font-weight:600; }
+  strong.hot{ color:var(--hot); font-weight:700; }
+  strong.wt{ color:#fff; font-weight:700; }
+
+  /* 返回顶部 */
+  .back-top-row{ margin-top:46px; text-align:right; }
+  .back-top{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 20px;
+    color:var(--neon); text-decoration:none;
+    font-size:14px; font-weight:600;
+    background:rgba(46,230,200,.07);
+    border:1px solid rgba(46,230,200,.3);
+    border-radius:999px;
+    transition:all .24s ease;
+  }
+  .back-top:hover{
+    background:rgba(46,230,200,.18);
+    border-color:var(--neon);
+    box-shadow:0 0 20px rgba(46,230,200,.3);
+    transform:translateY(-2px);
+  }
+
+  /* ================= 活动安排表 ================= */
+  .table-shell{
+    margin:10px 0 8px;
+    overflow-x:auto;
+    border-radius:12px;
+    border:1px solid var(--line-2);
+    background:var(--panel);
+  }
+  table.schedule{
+    width:100%; min-width:700px;
+    border-collapse:collapse;
+    font-size:15px;
+  }
+  table.schedule th,
+  table.schedule td{
+    border:1px solid var(--line-2);
+    padding:14px 16px;
+    text-align:center;
+    vertical-align:middle;
+    line-height:1.65;
+  }
+  table.schedule tr.head-row th{
+    background:rgba(46,230,200,.09);
+    color:var(--neon);
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:1px;
+  }
+  table.schedule td.caption-cell{
+    padding:20px 16px;
+    background:linear-gradient(120deg, rgba(46,230,200,.22), rgba(255,61,113,.13));
+    color:#fff;
+    font-size:19px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    border-color:rgba(46,230,200,.3);
+  }
+  table.schedule tbody tr:nth-child(even) td{ background:rgba(255,255,255,.014); }
+  table.schedule tbody tr:hover td{ background:rgba(46,230,200,.055); }
+  table.schedule td.date{ color:var(--neon); font-weight:600; white-space:nowrap; }
+  table.schedule td.time{ font-family:var(--mono); font-size:14px; color:#c7cedb; }
+  table.schedule td.room{ color:var(--dim); }
+  table.schedule td.note-cell{
+    text-align:left;
+    color:var(--dim);
+    font-size:14px;
+    background:rgba(46,230,200,.045) !important;
+  }
+
+  /* ================= 风采展示 ================= */
+  .figure{ margin:30px 0 14px; text-align:center; }
+  .shot{
+    display:block;
+    position:relative;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid rgba(46,230,200,.3);
+    background:var(--panel);
+    transition:all .34s ease;
+  }
+  .shot img{
+    display:block;
+    width:100%; height:auto;
+    transition:transform .5s ease, filter .34s ease;
+  }
+  .shot:hover{ border-color:var(--neon); box-shadow:0 0 46px rgba(46,230,200,.32), 0 18px 46px rgba(0,0,0,.6); }
+  .shot:hover img{ transform:scale(1.025); filter:brightness(1.06); }
+  .shot::after{
+    content:"点击查看活动介绍 →";
+    position:absolute; left:0; right:0; bottom:0;
+    padding:34px 18px 14px;
+    font-size:14px; font-weight:700; letter-spacing:1px;
+    color:#fff;
+    background:linear-gradient(transparent, rgba(5,8,12,.86));
+    opacity:0;
+    transition:opacity .3s ease;
+  }
+  .shot:hover::after{ opacity:1; }
+  .figure figcaption{
+    margin-top:16px;
+    color:var(--dim); font-size:13.5px; letter-spacing:.3px;
+  }
+  .figure figcaption .hint{ color:var(--neon); font-weight:600; }
+
+  .video-shell{
+    margin:40px auto 12px;
+    max-width:920px;
+    padding:12px;
+    border-radius:14px;
+    border:1px solid rgba(46,230,200,.3);
+    background:var(--panel);
+  }
+  .video-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:16 / 9;
+    background:#000;
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .video-frame embed{
+    position:absolute; top:0; left:0;
+    width:100%; height:100%;
+    border:0; background:#000;
+  }
+  .video-note{
+    max-width:920px; margin:14px auto 0;
+    text-align:center; color:var(--dim); font-size:13px;
+  }
+  .video-note a{ color:var(--neon); }
+
+  /* ================= 报名表 ================= */
+  .form-card{
+    margin:28px 0 0;
+    overflow-x:auto;
+    border-radius:14px;
+    border:1px solid var(--line-2);
+    background:var(--panel);
+  }
+  table.form-table{
+    width:100%; min-width:660px;
+    border-collapse:collapse;
+    font-size:15px;
+  }
+  table.form-table caption{
+    padding:20px 16px;
+    background:linear-gradient(120deg, rgba(46,230,200,.24), rgba(255,61,113,.14));
+    color:#fff;
+    font-size:18px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    border-bottom:1px solid rgba(46,230,200,.28);
+  }
+  table.form-table th,
+  table.form-table td{
+    border:1px solid var(--line-2);
+    padding:15px 18px;
+    vertical-align:middle;
+  }
+  table.form-table th{
+    width:190px;
+    text-align:right;
+    background:rgba(46,230,200,.045);
+    color:var(--neon);
+    font-size:15px;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  table.form-table td{ text-align:left; color:#c7cedb; }
+
+  table.form-table input[type="text"],
+  table.form-table select,
+  table.form-table textarea{
+    width:100%;
+    padding:10px 13px;
+    background:var(--bg-2);
+    border:1px solid var(--line-2);
+    border-radius:8px;
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:15px;
+    transition:all .22s ease;
+  }
+  table.form-table input[type="text"]:focus,
+  table.form-table select:focus,
+  table.form-table textarea:focus{
+    outline:none;
+    border-color:var(--neon);
+    box-shadow:0 0 0 3px rgba(46,230,200,.16);
+    background:#0a0d12;
+  }
+  table.form-table ::placeholder{ color:#5c6675; }
+  table.form-table textarea{ resize:vertical; min-height:116px; line-height:1.8; }
+  table.form-table select{ cursor:pointer; }
+  table.form-table select option{ background:var(--bg-2); color:var(--text); }
+
+  /* 年月日三个输入框并排（不用 flex，避免破坏单元格布局） */
+  td.date-cell input[type="text"]{ display:inline-block; margin:4px 3px 4px 0; }
+  td.date-cell .w-y{ width:90px !important; }
+  td.date-cell .w-m{ width:66px !important; }
+  td.date-cell .w-d{ width:66px !important; }
+  td.date-cell .unit{ color:var(--dim); font-size:14px; margin-right:14px; }
+
+  /* 手机 / 邮箱并排 */
+  td.two-col input[type="text"]{
+    display:inline-block;
+    width:calc(50% - 8px) !important;
+    margin:4px 8px 4px 0;
+  }
+
+  label.opt{
+    display:inline-flex; align-items:center; gap:8px;
+    margin:5px 20px 5px 0;
+    cursor:pointer; color:#c7cedb;
+    transition:color .2s ease;
+  }
+  label.opt:hover{ color:var(--neon); }
+  label.opt input[type="radio"],
+  label.opt input[type="checkbox"]{
+    appearance:none; -webkit-appearance:none;
+    width:16px; height:16px; margin:0;
+    border:1.5px solid rgba(139,149,165,.6);
+    background:var(--bg-2);
+    cursor:pointer; position:relative; flex:0 0 auto;
+    transition:all .2s ease;
+  }
+  label.opt input[type="radio"]{ border-radius:50%; }
+  label.opt input[type="checkbox"]{ border-radius:4px; }
+  label.opt input:checked{ border-color:var(--neon); background:rgba(46,230,200,.22); }
+  label.opt input[type="radio"]:checked::after{
+    content:""; position:absolute; inset:3px; border-radius:50%; background:var(--neon);
+  }
+  label.opt input[type="checkbox"]:checked::after{
+    content:"✓"; position:absolute; inset:0;
+    display:grid; place-items:center;
+    font-size:11px; font-weight:800; color:var(--neon); line-height:1;
+  }
+
+  td.submit-cell{ padding:22px 18px; }
+  td.submit-cell input[type="submit"],
+  td.submit-cell input[type="reset"]{
+    padding:12px 32px;
+    font-family:var(--sans); font-size:15px; font-weight:700;
+    border-radius:10px; cursor:pointer;
+    transition:all .24s ease;
+    margin-right:14px;
+  }
+  td.submit-cell input[type="submit"]{
+    background:linear-gradient(135deg, var(--neon), var(--neon-deep));
+    color:#04211d; border:1px solid transparent;
+    box-shadow:0 6px 20px rgba(46,230,200,.24);
+  }
+  td.submit-cell input[type="submit"]:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(46,230,200,.4); }
+  td.submit-cell input[type="reset"]{
+    background:transparent; color:var(--dim);
+    border:1px solid var(--line-2);
+  }
+  td.submit-cell input[type="reset"]:hover{ color:var(--text); border-color:var(--dim); }
+  .form-msg{
+    display:inline-block;
+    margin-left:6px;
+    color:var(--neon); font-size:14px; font-weight:600;
+  }
+  .form-msg[hidden]{ display:none; }
+
+  /* ================= 页脚 ================= */
+  footer{
+    padding:54px 0 66px;
+    text-align:center;
+    color:var(--dim); font-size:13.5px;
+    border-top:1px solid var(--line-2);
+  }
+  footer .fmark{
+    display:inline-grid; place-items:center;
+    width:38px; height:38px; margin-bottom:16px;
+    border-radius:10px;
+    background:linear-gradient(140deg, var(--neon), var(--neon-deep));
+    color:#04211d; font-family:var(--mono); font-size:15px; font-weight:800;
+    box-shadow:0 0 20px rgba(46,230,200,.35);
+  }
+  footer p{ margin:6px 0; }
+  footer a{ color:var(--neon); text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+
+  /* ================= 响应式 ================= */
+  @media (max-width:920px){
+    body{ font-size:15.5px; padding-top:112px; }
+    .bar{ height:auto; padding:10px 18px; flex-wrap:wrap; gap:10px; }
+    section{ scroll-margin-top:130px; }
+    .nav{ margin-left:0; width:100%; justify-content:flex-start; gap:0; }
+    .nav a{ padding:6px 10px; font-size:14px; }
+    .hero{ padding:66px 0 58px; }
+    .block{ padding:56px 0; }
+    .block-en{ display:none; }
+    table.form-table th{ width:126px; text-align:left; white-space:normal; }
+  }
+  @media (max-width:540px){
+    .music-btn{ padding:0 12px; font-size:13px; }
+    .music-btn .music-text{ display:none; }
+    .music-btn::after{ content:"背景音乐"; font-size:13px; }
+    td.two-col input[type="text"]{ width:100% !important; margin-right:0; }
+  }
+</style>
+</head>
+
+<body id="top">
+
+<!-- 背景音乐：点击左上角按钮后播放 -->
+<audio id="bgm" src="bgm.mp3" loop preload="none"></audio>
+
+<!-- ==================== 顶部固定栏 ==================== -->
+<header class="topbar">
+  <div class="bar">
+
+    <!-- 左上角：点击播放背景音乐 -->
+    <button id="musicBtn" class="music-btn" type="button" aria-pressed="false" title="点击播放 / 暂停背景音乐">
+      <span class="music-icon">♪</span>
+      <span class="music-text">播放背景音乐</span>
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    </button>
+
+    <a href="#top" class="brand">
+      <span class="mark">B</span>
+      <span class="brand-text">
+        <span class="brand-cn">贝斯社</span>
+        <span class="brand-en">BASS CLUB</span>
+      </span>
+    </a>
+
+    <!-- 五对链接的前一半：五个跳转锚点 -->
+    <nav class="nav">
+      <a href="#intro">社团简介</a>
+      <a href="#schedule">活动安排</a>
+      <a href="#showcase">风采展示</a>
+      <a href="#stories">社员故事</a>
+      <a href="#signup">在线报名</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ==================== 首屏 ==================== -->
+<div class="hero">
+  <div class="strings" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap hero-inner">
+    <p class="kicker">2026 SPRING · 招新</p>
+    <h1>贝斯社</h1>
+    <p class="hero-en">BASS CLUB</p>
+    <p class="hero-sub">
+      一根弦就够撑住一整支乐队。<br>
+      全校唯一一个只练低音的社团，2026 年春季招新开始了。
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#signup">立即报名</a>
+      <a class="btn btn-line" href="#intro">先看看我们</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 01 · 社团简介 ==================== -->
+<section class="block" id="intro">
+  <div class="wrap">
+
+    <div class="block-head">
+      <span class="block-num">01</span>
+      <h2 class="block-title">社团简介</h2>
+      <span class="block-en">About Us</span>
+    </div>
+    <div class="underline"></div>
+
+    <p class="lead">
+      贝斯社成立于 2017 年 9 月，是全校唯一一个只练低音的学生社团。九年间我们送出过一百三十多位贝斯手，撑起了校园里大半支乐队的下半身。
+    </p>
+
+    <h3>一切从「乐队缺贝斯手」开始</h3>
+    <p>
+      2017 年秋天，学校里几支校园乐队几乎同时撞上同一个问题：愿意弹吉他的人排队，愿意弹贝斯的人一个都没有。鼓手说"没贝斯我就当节拍器"，主唱说"低频是空的"，于是几个人被半推半就地抓了壮丁，凑成了这个社团最早的六个成员。
+    </p>
+    <p>
+      第一次合练是一首《Another One Bites the Dust》。那首歌的贝斯线其实并不难，但六个人在同一小节里抢同一个拍点，鼓手笑到把鼓棒掉了两次。后来我们把那天的录音留了下来，现在还在社团云盘里，偶尔拿出来互相嘲笑。
+    </p>
+    <p>
+      九年过去，这个当初为了"救场"而成立的社团，成了全校最稳定的低音供给方：目前在校的三支校级乐队里，有两支的贝斯手出自我们；每年迎新晚会、毕业晚会、社团联演的节目里，几乎都能看到社员坐在舞台右侧那个不太显眼、但一停整首歌就塌掉的位置上。
+    </p>
+
+    <h3>我们每周在做什么</h3>
+    <p>
+      每周二、周四晚十九点到二十一点，音乐楼 B104 乐队排练室是我们的固定时间。这是全校唯一一间配了鼓组和监听的小排练室，隔壁就是琴房，隔音做得还行，鼓手打起来的时候地板会震。
+    </p>
+    <p>
+      社员按基础分三组：<em class="key">零基础组</em>从认识四根弦、右手两指轮拨、节拍器六十拍开始，第一个月只练右手，第二个月才上左手按弦与换把；<em class="key">进阶组</em>主攻滑音、击勾弦、切分与十六分音符的稳定性；<em class="key">乐队组</em>则需要和鼓手合练，目标是能进一支真实的校园乐队。每个新社员配一位带练学长学姐，一周一次半小时的一对一，这是我们从建社起就没断过的规矩 —— 贝斯的手型问题，比如手指塌、手腕吊、拨弦角度不对，隔着三米远是看不出来的。
+    </p>
+
+    <h3>贝斯到底难在哪</h3>
+    <p>
+      很多人觉得贝斯是"简单版的吉他"。这个说法只说对了一半：<strong class="wt">它确实不用弹和弦，一晚上可能只按三个音；但它是乐队里最藏不住的乐器。</strong>
+    </p>
+    <p>
+      吉他弹错一个音，观众大概听不出来；贝斯错半拍，整首歌会像地板塌了一块。所以我们在社团里练的东西，一半以上和"音"无关：跟节拍器、跟鼓手对视、数小节、听自己是不是拖了、是不是抢了。另外一半是音色 —— 手指还是拨片、靠近琴桥还是靠近琴颈、拾音器比例怎么调、前级加几个 dB，同一个音能出来十几种性格。这些都没法靠看视频学会，只能在一个能听见自己的房间里，一遍一遍试。
+    </p>
+
+    <h3>我们弹什么</h3>
+    <p>
+      社团的曲库铺得很开。<em class="key">放克</em>是基本盘：《Another One Bites the Dust》《Uptown Funk》《Get Lucky》，练的是律动的咬合；<em class="key">摇滚</em>拿来练力量：《Smells Like Teen Spirit》《Hysteria》，后者是很多人第一次知道自己手指有多慢的原因；<em class="key">流行与 City Pop</em>练线条：《夜に駆ける》《Lemon》的贝斯改编；<em class="key">校园民谣</em>练克制，很多时候一个音都不该多弹。
+    </p>
+    <p>
+      去年梧桐道快闪，我们摆了三把贝斯现场 Jam，路过的同学围着看了四十分钟。有位老师说："第一次听清楚贝斯在干什么。"这句话我们记到现在。
+    </p>
+
+    <h3>家底与保障</h3>
+    <p>
+      社团现有电贝斯五把（三把四弦、两把五弦，主动与被动都有）、音箱四个（含一个 300W 分体箱）、效果器一组、鼓机两台、监听耳机六副。所有设备由社团统一维护，器材组的同学每学期初检查一次。新社员在入社后的前三个月可以免费借用社团的琴和音箱，只需要自备一根 6.35mm 音频线和一个拨片（社团可代购，二十元以内）。
+    </p>
+
+    <h3>我们看重什么</h3>
+    <p>
+      我们不要求你有基础 —— 社员里有超过七成是零基础进来的，包括从前完全没碰过弦乐器的人；也不要求你未来一定要组乐队。我们真正看重的是三件事：<strong class="hot">愿意每周拿出两个小时走进 B104；愿意对着节拍器死磕同一个八小节；愿意当那块不出彩、但别人踩上去会塌的地基。</strong>
+    </p>
+    <p>
+      如果你能答应这三件事，剩下的，我们教你。
+    </p>
+    <p>
+      贝斯是件很诚实的乐器，你练了多少拍，律动就还你多少。如果某个晚上你曾经在 live 现场被某个低频震得胸腔发麻，想知道那是怎么来的 —— 欢迎先来 B104 坐一次。不用报名也可以来听，我们的门一直开着。
+    </p>
+
+    <div class="back-top-row">
+      <a class="back-top" href="#top">↑ 返回顶部</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== 02 · 活动安排 ==================== -->
+<section class="block" id="schedule">
+  <div class="wrap">
+
+    <div class="block-head">
+      <span class="block-num">02</span>
+      <h2 class="block-title">活动安排</h2>
+      <span class="block-en">Schedule</span>
+    </div>
+    <div class="underline"></div>
+
+    <p class="lead">
+      一个学期，我们有固定的排练，也有不等人的舞台。下面是 2026 年春季学期的主要活动排期 —— 其中新成员见面会和贝斯基础教学公开课都在同一间排练室举行，第一次来不用担心找不着路。
+    </p>
+
+    <h3>贝斯社 2026 年春季学期活动安排表</h3>
+
+    <div class="table-shell">
+      <table class="schedule">
+        <tbody>
+          <!-- 第一行：标题占据 4 列 -->
+          <tr>
+            <td class="caption-cell" colspan="4">贝斯社 2026 年春季学期活动安排表</td>
+          </tr>
+          <!-- 第二行：四列表头，内容居中 -->
+          <tr class="head-row">
+            <th scope="col">日期</th>
+            <th scope="col">时间</th>
+            <th scope="col">活动名称</th>
+            <th scope="col">地点</th>
+          </tr>
+          <!-- 新成员见面会 与 贝斯基础教学公开课：时间、教室各跨两行合并 -->
+          <tr>
+            <td class="date">3 月 5 日</td>
+            <td class="time" rowspan="2">19:00 — 20:30</td>
+            <td>新成员见面会</td>
+            <td class="room" rowspan="2">音乐楼 B104 · 乐队排练室</td>
+          </tr>
+          <tr>
+            <td class="date">3 月 12 日</td>
+            <td>贝斯基础教学公开课</td>
+          </tr>
+          <tr>
+            <td class="date">3 月 19 日</td>
+            <td class="time">19:00 — 21:00</td>
+            <td>校园乐队联演</td>
+            <td class="room">大学生活动中心 · 主舞台</td>
+          </tr>
+          <tr>
+            <td class="date">3 月 26 日</td>
+            <td class="time">14:00 — 16:00</td>
+            <td>律动与音色工作坊</td>
+            <td class="room">音乐楼 B104 · 乐队排练室</td>
+          </tr>
+          <tr>
+            <td class="date">4 月 9 日</td>
+            <td class="time">19:00 — 21:30</td>
+            <td>春季 Live · 社员专场</td>
+            <td class="room">大学生活动中心 · 黑匣子剧场</td>
+          </tr>
+          <tr>
+            <td class="date">4 月 23 日</td>
+            <td class="time">16:00 — 18:00</td>
+            <td>梧桐道 Jam 快闪</td>
+            <td class="room">南门梧桐道</td>
+          </tr>
+          <!-- 备注行：再跨 4 列 -->
+          <tr>
+            <td class="note-cell" colspan="4">
+              备注：以上活动全部免费，社员可带同学旁听；每次活动提前十五分钟到场调音。遇雨雪或场地冲突，快闪与户外活动顺延一周，具体以社团群通知为准。
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>每周常规：雷打不动的两个晚上</h3>
+    <p>
+      表格之外，社团真正的日常是每周二、周四晚的固定排练。这两个晚上不设考核，也不强求每次必到 —— 但我们发现，坚持来的人，一个学期下来手指的稳定度和律动的准确度完全是另一个层次。排练分两段：前四十分钟是集体基本功，所有人跟同一个节拍器练音阶、八度跳、十六分音符；后八十分钟按组分头练曲目，零基础组有专人带，乐队组在另一侧和鼓手合练。
+    </p>
+    <p>
+      如果你时间有限，我们建议至少保证每周来一次。贝斯最怕的不是练得少，而是停得太久 —— 手感一旦断掉，重新捡起来要花两倍的时间。这也是为什么我们把"愿意每周拿出两个小时"写在了招新要求的第一条。
+    </p>
+
+    <h3>月度重点：从见面到登台</h3>
+    <p>
+      三月的节奏是"认识"。<strong class="wt">新成员见面会</strong>（3 月 5 日）不讲技术，只讲人：我们会把社团所有的琴摆开，让每个人随便拨两下，然后自我介绍、分组、配对带练学长。紧接着的<strong class="wt">贝斯基础教学公开课</strong>（3 月 12 日）是给零基础同学的第一堂课，从怎么背带、怎么站、右手两指怎么轮开始，全程手把手。这两场活动安排在同一间排练室，是因为我们希望你把这里当成一个熟悉的地方，而不是一个需要重新找路的陌生舞台。
+    </p>
+    <p>
+      三月下旬开始往外走：<em class="key">校园乐队联演</em>（3 月 19 日）是我们第一次在全校面前亮相，乐队组会跟两支校级乐队同台；<em class="key">律动与音色工作坊</em>（3 月 26 日）是社团内部最爱的一场，我们会拿两把不同配置的琴做 AB 对比，让大家亲手把手指、拨片、拾音器、前级这一条链子拆开听一遍。
+    </p>
+
+    <h3>学期大事件：Live 与 Jam</h3>
+    <p>
+      <em class="key">春季 Live · 社员专场</em>（4 月 9 日）是整个学期最重要的日子。它不比赛、不排名，但每个组都要出节目，零基础组的同学会在入社六个星期后第一次站上黑匣子剧场的小舞台 —— 通常只有两分钟，但那一刻的成就感，比任何证书都实在。<em class="key">梧桐道 Jam 快闪</em>（4 月 23 日）则是我们最"不正经"也最受欢迎的活动：把音箱和琴搬到路边，谁想弹谁弹，谁想听谁听，鼓手带个军鼓就能开。
+    </p>
+
+    <h3>关于请假与迟到</h3>
+    <p>
+      我们不做考勤打卡，但有两条默契：一是如果你这周来不了，提前在社团群说一声，别让带练学长白等半小时；二是演出前一周的合练不允许缺席 —— 因为跟鼓手的合奏里少一个人，剩下的人练的就不是同一个东西了。除此之外，课业、考试、身体不舒服，永远排在社团前面，这一点我们从建社起就没变过。
+    </p>
+
+    <div class="back-top-row">
+      <a class="back-top" href="#top">↑ 返回顶部</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== 03 · 风采展示 ==================== -->
+<section class="block" id="showcase">
+  <div class="wrap">
+
+    <div class="block-head">
+      <span class="block-num">03</span>
+      <h2 class="block-title">风采展示</h2>
+      <span class="block-en">Gallery</span>
+    </div>
+    <div class="underline"></div>
+
+    <p class="lead">
+      下面这张照片来自我们上学期的排练日常。那一晚 B104 的顶灯坏了，只剩墙上的彩色灯带，鼓手说"这样反而像 live house"，于是我们干脆关了所有大灯，就着这点光练了两个小时。<span style="color:var(--neon);">点击照片，可以进入贝斯社的活动介绍页。</span>
+    </p>
+
+    <!-- 图片：点击可跳转到 club_intro.html -->
+    <figure class="figure">
+      <a class="shot" href="club_intro.html" title="点击进入贝斯社活动介绍">
+        <img src="club_photo.jpg" alt="贝斯社日常演奏照片，几位社员在乐队排练室里一起弹奏电贝斯" width="1600" height="900">
+      </a>
+      <figcaption>
+        贝斯社排练日常 · 摄于音乐楼 B104 乐队排练室
+        <br><span class="hint">▲ 点击图片查看活动介绍</span>
+      </figcaption>
+    </figure>
+
+    <h3>一张照片背后的两个小时</h3>
+    <p>
+      很多人以为社团的高光时刻在舞台上，其实不是。真正让我们记住的，是这种排练日的晚上：房间里挤着七八个人，有人蹲在地上插线，有人在调音箱上的三个旋钮，鼓手在反复打同一个过门，贝斯手站在音箱斜前方半米的位置 —— 那是唯一能听清低频又不被低频打耳光的地方。
+    </p>
+    <p>
+      拍照那天大家的状态都很松。拍照的宣传部同学说，他最喜欢的是那种"没人看镜头"的瞬间，因为看镜头就变成摆拍了。所以这张照片里没有人在笑得很标准，弹低音区的那位同学正在低头看自己的右手，中间那位在等鼓手的下一拍，最右边那位男生其实刚刚弹错了，正在重新找位置。这些细节凑在一起，反而最像我们平时练琴的样子。
+    </p>
+
+    <h3>一段四秒钟的短片</h3>
+    <p>
+      下面这段视频，是把上面那张照片在剪映里加了一点特效做成的。只有四秒，是我们想给社团留一个会动的东西 —— 静态的照片是某一秒的切片，而有了这四秒，画面里的低频好像真的在震。
+    </p>
+
+    <div class="video-shell">
+      <div class="video-frame">
+        <!-- 参考 ex3_25：用 embed 标签导入 mp4 视频 -->
+        <embed src="club_video.mp4" type="video/mp4" width="920" height="518" title="贝斯社排练日常短片">
+      </div>
+    </div>
+    <p class="video-note">
+      短片时长约 4 秒，无声播放。若你的浏览器未能显示播放器，可
+      <a href="club_video.mp4" target="_blank" rel="noopener">点此直接打开视频文件</a>。
+    </p>
+
+    <h3>我们一年到底能有多少个舞台</h3>
+    <p>
+      很多人问过这个问题，答案比想象的多。除了每学期固定的<em class="key">社员 Live</em>和<em class="key">校园乐队联演</em>，我们还会接到校园开放日、迎新晚会、毕业晚会、各学院迎新与表彰会、社团文化节等活动的邀约。上个学年我们一共演了十一场，最大的一场在大学生活动中心报告厅，台下坐了近八百人。
+    </p>
+    <p>
+      最特别的一场是去年十一月，在附属中学的操场上。那天风很大，谱架吹倒了两次，我们把谱子压在石头下面接着弹。弹完以后一群中学生围上来看琴，有人问"这个是不是吉他的爸爸"，有人伸手去拨弦。社长说，那是她做社长以来最有成就感的一天。
+    </p>
+
+    <h3>除了演出，我们还拍什么</h3>
+    <p>
+      社团宣传部每学期会做三到四期视觉内容：排练花絮、社员专访、设备 AB 测试，以及每场演出的现场记录。这些素材一部分发在社团的公众号和视频号上，一部分会归档进我们的"社团影像库"—— 九年下来，那个文件夹里已经有四千多张照片和三百多段视频，从画质模糊的第一届 Live，到现在能拍清击勾弦的慢动作特写。如果你喜欢摄影或剪辑，宣传部永远缺人，而且在这里你能拍到别人拍不到的东西。
+    </p>
+    <p>
+      我们用的设备其实很普通：一台用了四年的微单、两盏补光灯、一支借来的领夹麦。真正让画面好看的不是器材，而是大家愿意在排练结束以后多留二十分钟，重新把那一段弹一遍。照片和视频对我们来说从来不是宣传材料，是记忆 —— 等到毕业那天再翻出来看，你会庆幸当时有人举着相机，站在排练室最角落的位置。
+    </p>
+
+    <div class="back-top-row">
+      <a class="back-top" href="#top">↑ 返回顶部</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== 04 · 社员故事 ==================== -->
+<section class="block" id="stories">
+  <div class="wrap">
+
+    <div class="block-head">
+      <span class="block-num">04</span>
+      <h2 class="block-title">社员故事</h2>
+      <span class="block-en">Stories</span>
+    </div>
+    <div class="underline"></div>
+
+    <p class="lead">
+      我们不太会写宣传语，所以把这些年攒下的几件小事写在这里。它们不宏大，但都是真的 —— 如果你读完有一点点想走进 B104 的冲动，那这些字就没白写。
+    </p>
+
+    <h3>陈默：被室友骗进来的那个人</h3>
+    <p>
+      陈默进社的时候是大二，被室友"骗"来的。室友跟他说"就弹一根弦，随便拨两下就行"，他信了，来了才发现那根弦要跟着鼓手的底鼓精确到十六分音符。
+    </p>
+    <p>
+      他第一次合练弹的是《Another One Bites the Dust》。整整四分钟，他弹了三个音，弹错了两次，还有一次抢在鼓手前面。散场以后他坐在排练室门口的台阶上，说自己像个打字员。
+    </p>
+    <p>
+      但他第二周又来了。他有个别人比不了的习惯：每次练琴都把手机架在音箱旁边录下来，回去对着原曲一秒一秒比。他说他能听出自己哪一拍是"赶"的，哪一拍是"懒"的。一年下来，他手机里存了两百多段录音，最长的一段有九分钟。
+    </p>
+    <p>
+      现在他是社团的社长，也是校乐队"打桩机"的贝斯手。他带新社员的第一句话永远是："我最开始连三个音都弹不对。"然后他会停一下，看着对面的人说："别急，你下周还来就行。"
+    </p>
+
+    <h3>许星野：从"手太软"到 Hysteria</h3>
+    <p>
+      许星野是文学院的，个子不高，刚进社团的时候左手按弦按不出声，被笑称"手太软"。她不恼，回去在琴颈上贴了四张便签，一根弦一张，每天用指尖压十下、二十下、三十下，压到指尖起泡，破了，结了茧。
+    </p>
+    <p>
+      三个月后她能按出声了，六个月后她开始练《Hysteria》——那是很多人公认的"贝斯劝退曲"，全程十六分音符，一个音都不能虚。她练了整整一个学期，最终在春季 Live 上完整弹了下来。台下鼓手说，那是他第一次在同一把琴上听见这么稳的右手。
+    </p>
+    <p>
+      许星野说她想告诉新人的是："贝斯不考验天赋，它考验你愿不愿意把同一件无聊的事重复一万次。而这恰恰是普通人唯一能赢的地方。"
+    </p>
+
+    <h3>唐一鸣：每天二十分钟的耳机</h3>
+    <p>
+      唐一鸣是计算机专业的，课业重，是社团里出勤率刚好卡在及格线上的人。但他有个雷打不动的习惯：每天在宿舍用一个小耳放接琴练二十分钟，不开音箱也不外放。二十分钟，不多不少，练完就关灯写作业。
+    </p>
+    <p>
+      一开始大家觉得这是自欺欺人，因为耳机里听不出低频的手感。但一年以后，所有人发现他的律动变了：每一拍都稳稳压在底鼓上，没有一丝多余的动作。社团里公认"最稳的节拍感"就是他的。
+    </p>
+    <p>
+      唐一鸣自己总结："贝斯不奖励猛练，它奖励不断练。二十分钟天天有，比一周一次四小时强得多。"我们一起算过一笔账：每天二十分钟，一年是七百多个小时；而一周一次两小时，一年只有一百多个小时，还常常因为考试周断掉。
+    </p>
+
+    <h3>一个没有名字的晚上</h3>
+    <p>
+      去年十二月最冷的那天，期末考试周前一周，排练室只有三个人。那晚没有人练正经曲子，大家就随便 Jam，弹一些跑调的、笑场的、不知道叫什么的片段。有人试着把《茉莉花》套进放克节奏，弹出来居然还不错；有人用五声音阶弹了一段 slap，鼓手直接顺着接了下去。
+    </p>
+    <p>
+      十一点楼里要锁门，我们才收拾琴。走出音乐楼的时候，隔壁琴房还有人在练小号，声音从走廊尽头飘过来。陈默说："我觉得我们社团最好的时候，其实不是台上。"我们都同意了。
+    </p>
+    <p>
+      如果你也想要这样一个地方 —— 有低频、有几个不催你的人，和一段你可以随便弹错的时间 —— 那就是我们。真诚地邀请你来坐一次。
+    </p>
+
+    <div class="back-top-row">
+      <a class="back-top" href="#top">↑ 返回顶部</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== 05 · 在线报名 ==================== -->
+<section class="block" id="signup">
+  <div class="wrap">
+
+    <div class="block-head">
+      <span class="block-num">05</span>
+      <h2 class="block-title">在线报名</h2>
+      <span class="block-en">Join Us</span>
+    </div>
+    <div class="underline"></div>
+
+    <p class="lead">
+      2026 年春季招新从 3 月 1 日开始，到 3 月 18 日结束。不限年级、不限专业、不需要任何弦乐基础 —— 填完下面这张表，三天内会有负责的同学联系你，约一次来排练室坐坐的时间。
+    </p>
+
+    <h3>报名前请先看这五条</h3>
+    <p>
+      <strong class="wt">一、时间成本。</strong>我们的固定排练在每周二、周四晚十九点到二十一点，位置在音乐楼 B104 乐队排练室。你不需要两次都到，但至少要能保证每周来一次。若你本学期有大实习、考研冲刺或长期出差，建议下个学期再来，我们每学期都招。
+    </p>
+    <p>
+      <strong class="wt">二、乐器问题。</strong>零基础的社员前三个月可以免费借用社团的琴和音箱，只需要自备一根 6.35mm 音频线和一个拨片（社团可代购，二十元以内）。如果你家里有琴，也可以用自己的；如果完全不想买任何东西，那就先借，我们用三个月时间一起看看你到底喜不喜欢它。
+    </p>
+    <p>
+      <strong class="wt">三、进度预期。</strong>说实话，贝斯不难入门，难在稳定。零基础的同学第一个月只能练右手两指轮拨和跟节拍器，第二个月才上左手按弦，第六周能完整弹完一首两分钟的曲子 —— 这已经是正常偏快的速度了。如果你期待一个月就上台 Jam，我们会劝你调整预期，但不会劝你走。恰恰相反，我们见过太多急于求成然后放弃的人，我们希望你慢慢地、长久地留下来。
+    </p>
+    <p>
+      <strong class="wt">四、不要怕"没有天赋"。</strong>社员里有超过七成是零基础进来的，进来时连贝斯有几根弦都不知道。我们自己统计过：从零基础到能跟上鼓手完整弹一首歌，平均需要七周；从零基础到能上 Live 演出，平均需要一学年。这两个数字里没有任何天赋变量，只有"来了多少次"这一个变量。
+    </p>
+    <p>
+      <strong class="wt">五、社费与考核。</strong>社团每学年收社费二十元，全部用于音频线、拨片、琴弦、谱子打印和器材维护，收支明细每学期公示。除乐队组外没有技术考核；乐队组需要参加一次合练试音，但试音不通过只会被建议多练一学期，不会影响你的社籍。
+    </p>
+
+    <h3>填写报名表</h3>
+    <p>
+      下面这张表里的十项都请如实填写。其中"出生日期"按年月日分三格填数字，"手机"和"邮箱"各填一个常用的 —— 我们只用它们通知活动，不会外传。最后两项"是否服从活动安排"与"兴趣方向"，请按你的真实想法选，因为我们会据此给你安排分组和带练学长。
+    </p>
+
+    <form id="signupForm" class="form-card" action="#" method="post" novalidate>
+      <table class="form-table">
+        <caption>贝斯社 2026 年春季招新报名表</caption>
+        <tbody>
+          <!-- ① 姓名 -->
+          <tr>
+            <th scope="row"><label for="f-name">① 姓名</label></th>
+            <td>
+              <input type="text" id="f-name" name="name" placeholder="请填写真实姓名" autocomplete="name">
+            </td>
+          </tr>
+          <!-- ② 性别：单选项 -->
+          <tr>
+            <th scope="row">② 性别</th>
+            <td>
+              <label class="opt"><input type="radio" name="gender" value="男" checked> 男</label>
+              <label class="opt"><input type="radio" name="gender" value="女"> 女</label>
+            </td>
+          </tr>
+          <!-- ③ 出生日期：年月日均为 text -->
+          <tr>
+            <th scope="row">③ 出生日期</th>
+            <td class="date-cell">
+              <input type="text" class="w-y" name="birth-year" maxlength="4" inputmode="numeric" placeholder="YYYY" aria-label="出生年份"> <span class="unit">年</span>
+              <input type="text" class="w-m" name="birth-month" maxlength="2" inputmode="numeric" placeholder="MM" aria-label="出生月份"> <span class="unit">月</span>
+              <input type="text" class="w-d" name="birth-day" maxlength="2" inputmode="numeric" placeholder="DD" aria-label="出生日期"> <span class="unit">日</span>
+            </td>
+          </tr>
+          <!-- ④ 手机邮箱：均为 text -->
+          <tr>
+            <th scope="row">④ 手机 / 邮箱</th>
+            <td class="two-col">
+              <input type="text" name="phone" placeholder="手机号" inputmode="numeric" aria-label="手机号" autocomplete="tel">
+              <input type="text" name="email" placeholder="常用邮箱" aria-label="常用邮箱" autocomplete="email">
+            </td>
+          </tr>
+          <!-- ⑤ 是否有贝斯基础：单选项 -->
+          <tr>
+            <th scope="row">⑤ 是否有贝斯基础</th>
+            <td>
+              <label class="opt"><input type="radio" name="foundation" value="零基础" checked> 零基础</label>
+              <label class="opt"><input type="radio" name="foundation" value="有一点基础"> 有一点基础</label>
+              <label class="opt"><input type="radio" name="foundation" value="有乐队经验"> 有乐队经验</label>
+            </td>
+          </tr>
+          <!-- ⑥ 兴趣方向：多选项 -->
+          <tr>
+            <th scope="row">⑥ 兴趣方向</th>
+            <td>
+              <label class="opt"><input type="checkbox" name="interest" value="贝斯演奏" checked> 贝斯演奏</label>
+              <label class="opt"><input type="checkbox" name="interest" value="乐队合奏"> 乐队合奏</label>
+              <label class="opt"><input type="checkbox" name="interest" value="参加演出"> 参加演出</label>
+              <label class="opt"><input type="checkbox" name="interest" value="编曲制作"> 编曲制作</label>
+              <label class="opt"><input type="checkbox" name="interest" value="宣传摄影"> 宣传摄影</label>
+              <label class="opt"><input type="checkbox" name="interest" value="活动策划"> 活动策划</label>
+            </td>
+          </tr>
+          <!-- ⑦ 年级：弹出式选择栏 -->
+          <tr>
+            <th scope="row"><label for="f-grade">⑦ 年级</label></th>
+            <td>
+              <select id="f-grade" name="grade">
+                <option value="">请选择你的年级</option>
+                <option value="大一">大一</option>
+                <option value="大二">大二</option>
+                <option value="大三">大三</option>
+                <option value="大四">大四</option>
+                <option value="研究生">研究生</option>
+              </select>
+            </td>
+          </tr>
+          <!-- ⑧ 自我介绍：textarea -->
+          <tr>
+            <th scope="row"><label for="f-intro">⑧ 自我介绍</label></th>
+            <td>
+              <textarea id="f-intro" name="intro" rows="5" placeholder="请简单介绍自己、以及加入贝斯社的理由……"></textarea>
+            </td>
+          </tr>
+          <!-- ⑨ 是否服从活动安排：单选项 -->
+          <tr>
+            <th scope="row">⑨ 是否服从活动安排</th>
+            <td>
+              <label class="opt"><input type="radio" name="obey" value="服从安排" checked> 服从安排</label>
+              <label class="opt"><input type="radio" name="obey" value="视情况而定"> 视情况而定</label>
+              <label class="opt"><input type="radio" name="obey" value="不服从"> 不服从</label>
+            </td>
+          </tr>
+          <!-- ⑩ 提交操作：submit 与 reset -->
+          <tr>
+            <th scope="row">⑩ 提交</th>
+            <td class="submit-cell">
+              <input type="submit" value="提交报名">
+              <input type="reset" value="重新填写">
+              <span id="formMsg" class="form-msg" role="status" hidden></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+
+    <h3>提交之后会怎样</h3>
+    <p>
+      三天之内，你会收到一封来自社团人事组的邮件，或一条短信。里面不会是一封模板式的通知，而是我们某位社员的亲笔话 —— 通常会说"这周二晚上七点，B104，来吧，我们给你留了条音频线"。
+    </p>
+    <p>
+      如果你已经在犹豫要不要填这张表，那我想说的是：这里有超过七成的人，当初也是在填表页面上停留了很久的那一个。他们最后按下去的原因，往往不是因为被哪句话说服了，只是因为想试试 —— 而试一次的成本，不过是一个晚上。
+    </p>
+    <p>
+      我们真的挺希望 B104 那间排练室的声音，再多一点人来一起做出来。
+    </p>
+
+    <div class="back-top-row">
+      <a class="back-top" href="#top">↑ 返回顶部</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== 页脚 ==================== -->
+<footer>
+  <div class="wrap">
+    <span class="fmark">B</span>
+    <p>音乐楼 B104 · 乐队排练室 &nbsp;|&nbsp; 每周二 / 周四 19:00 — 21:00</p>
+    <p>贝斯社 2026 年春季招新 &nbsp;·&nbsp; <a href="#signup">在线报名</a> &nbsp;·&nbsp; <a href="club_intro.html">活动介绍</a></p>
+    <p style="margin-top:18px;color:#4e5665;font-size:12.5px;">网页设计与制作 · work2 上机作业</p>
+  </div>
+</footer>
+
+<script>
+  /* ========== 1. 左上角按钮：点击播放 / 暂停背景音乐 ========== */
+  (function () {
+    var audio = document.getElementById('bgm');
+    var btn = document.getElementById('musicBtn');
+    var label = btn.querySelector('.music-text');
+    var icon = btn.querySelector('.music-icon');
+
+    function paint(isPlaying) {
+      btn.classList.toggle('playing', isPlaying);
+      btn.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+      label.textContent = isPlaying ? '暂停背景音乐' : '播放背景音乐';
+      icon.textContent = isPlaying ? '❚❚' : '♪';
+    }
+
+    btn.addEventListener('click', function () {
+      if (audio.paused) {
+        var p = audio.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch(function () {
+            label.textContent = '音乐加载失败';
+            paint(false);
+          });
+        }
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', function () { paint(true); });
+    audio.addEventListener('pause', function () { paint(false); });
+  })();
+
+  /* ========== 2. 报名表提交：给出反馈，不真正跳转 ========== */
+  (function () {
+    var form = document.getElementById('signupForm');
+    var msg = document.getElementById('formMsg');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = (form.querySelector('#f-name').value || '').trim();
+      var grade = form.querySelector('#f-grade').value;
+
+      if (!name) {
+        msg.textContent = '请先填写姓名。';
+        msg.hidden = false;
+        form.querySelector('#f-name').focus();
+        return;
+      }
+      if (!grade) {
+        msg.textContent = '请选择所在年级。';
+        msg.hidden = false;
+        form.querySelector('#f-grade').focus();
+        return;
+      }
+
+      msg.textContent = '已收到，' + name + '！我们三天内联系你，记得来 B104 看看。';
+      msg.hidden = false;
+      msg.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+
+    form.addEventListener('reset', function () {
+      msg.hidden = true;
+      msg.textContent = '';
+    });
+  })();
+
+  /* ========== 3. 锚点滚动兜底（低版本浏览器） ========== */
+  (function () {
+    var links = document.querySelectorAll('.nav a[href^="#"], .back-top[href^="#"]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function (e) {
+        var id = this.getAttribute('href').slice(1);
+        var target = document.getElementById(id);
+        if (!target) { return; }
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#' + id);
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
