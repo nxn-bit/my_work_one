@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<style>
+/* =========================================================
+   0. 页面基础（不是 .page 的部分，可以自由写）
+   ========================================================= */
+body {
+  margin: 0;
+  padding: 46px 16px 64px;
+  background-color: #e9dcc8;
+  background-image: radial-gradient(circle at 50% 0, #f7edde 0, #e5d6be 100%);
+  color: #43301f;
+  font-family: Georgia, "Songti SC", "SimSun", "Microsoft YaHei", serif;
+  font-size: 16px;
+  line-height: 1.95;
+  text-align: center;
+}
+
+/* =========================================================
+   1. 老师指定的 .page 样式
+   只有 background-color 的值换成了学号末位 8 要求的晨光杏色 #FFECD6
+   ========================================================= */
+.page {
+display: inline-block;
+background-color: #FFECD6;
+box-shadow: 0 0 30px rgba(80, 58, 35, 0.25);
+text-align: left;
+max-width: 720px;
+}
+
+/* =========================================================
+   2. 并集选择器（必考）：h1, h2, h3, h4, h5, h6
+   ========================================================= */
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, "Times New Roman", "Songti SC", SimSun, serif;
+  color: #5b3a1e;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  margin: 0 0 14px;
+}
+
+/* =========================================================
+   3. ①顶部标题区
+   ========================================================= */
+.top {
+  padding: 46px 44px 30px;
+  text-align: center;
+  background-color: #fff4e2;
+  border-bottom: 3px double #e0c7a4;
+}
+.top h1 {
+  font-size: 33px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0 0 16px;
+}
+.top p {
+  margin: 0;
+  font-size: 13.5px;
+  color: #8a6a4a;
+  letter-spacing: 1px;
+  text-indent: 0;
+}
+
+/* =========================================================
+   4. ②活动介绍区
+   ========================================================= */
+.intro {
+  padding: 34px 44px 30px;
+}
+.intro h2 {
+  font-size: 22px;
+  padding-left: 14px;
+  border-left: 4px solid #b5432c;
+  margin: 0 0 20px;
+}
+.intro p {
+  margin: 0 0 16px;
+  font-size: 15.5px;
+  color: #4a3523;
+  text-indent: 2em;
+}
+
+/* ID 选择器（必考）：p#intro 作出强调 —— 放大 + 加粗 + 特殊颜色 */
+p#intro {
+  font-size: 17.5px;
+  font-weight: 700;
+  color: #a8391d;
+  background-color: #fff1d9;
+  border-left: 4px solid #b5432c;
+  padding: 14px 18px;
+  margin: 22px 0 0;
+  text-indent: 0;
+}
+
+/* =========================================================
+   5. ③活动报名信息表格区
+   ========================================================= */
+.signup {
+  padding: 30px 44px 34px;
+  border-top: 1px dashed #e0c7a4;
+}
+.signup h3 {
+  font-size: 19px;
+  margin: 0 0 18px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th, td {
+  border: 1px solid #e2cbaa;
+  padding: 9px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background-color: #f8e4c9;
+  color: #6a4423;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+tr:nth-child(even) td {
+  background-color: #fffaf0;
+}
+td:first-child {
+  text-align: center;
+  color: #8a6a4a;
+}
+tr:last-child td {
+  text-align: center;
+  background-color: #fdf3e4;
+}
+
+/* 后代选择器（必考）：div table a —— 只有 div 里的 table 里有超链接才会触发 */
+div table a {
+  display: inline-block;
+  padding: 3px 14px;
+  background-color: #f7dfbd;
+  border: 1px solid #dcb98f;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   6. ④页面链接区
+   ========================================================= */
+.linkbox {
+  padding: 28px 44px;
+  text-align: center;
+  border-top: 1px dashed #e0c7a4;
+}
+
+/* 链接伪类（必考）：LVHA 顺序 */
+a:link {
+  color: #a8552f;
+  text-decoration: underline;
+}
+a:visited {
+  color: #8d7358;
+}
+a:hover {
+  color: #d9541f;
+  text-decoration: none;
+}
+a:active {
+  color: #7f2f14;
+}
+
+/* 带类名的链接（必考）：a.red 与 a.blue，写在伪类之后才能盖住上面的颜色 */
+a.red {
+  display: inline-block;
+  margin: 6px 8px;
+  padding: 9px 24px;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background-color: #b5432c;
+  border-radius: 999px;
+  text-decoration: none;
+}
+a.blue {
+  display: inline-block;
+  margin: 6px 8px;
+  padding: 9px 24px;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background-color: #2f6b8f;
+  border-radius: 999px;
+  text-decoration: none;
+}
+a.red:hover {
+  color: #ffffff;
+  background-color: #9c3721;
+  text-decoration: none;
+}
+a.blue:hover {
+  color: #ffffff;
+  background-color: #275a78;
+  text-decoration: none;
+}
+
+/* =========================================================
+   7. ⑤底部公告区
+   ========================================================= */
+.notice {
+  padding: 30px 44px 38px;
+  background-color: #fff4e4;
+  border-top: 3px double #e0c7a4;
+}
+.notice h4 {
+  font-size: 17px;
+  letter-spacing: 2px;
+  color: #8a4a26;
+  margin: 0 0 16px;
+}
+.notice p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #6d5641;
+  line-height: 1.9;
+  text-indent: 0;
+}
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   8. 伪元素（必考）：p::first-letter 与 div::first-line
+   ========================================================= */
+p::first-letter {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #b5432c;
+}
+div::first-line {
+  letter-spacing: 0.08em;
+}
+
+/* =========================================================
+   9. 小屏幕适配
+   ========================================================= */
+@media (max-width: 720px) {
+  body {
+    padding: 20px 10px 40px;
+  }
+  .top, .intro, .signup, .linkbox, .notice {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .top {
+    padding-top: 32px;
+  }
+  .top h1 {
+    font-size: 24px;
+  }
+  table {
+    font-size: 13px;
+  }
+  th, td {
+    padding: 7px 8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- ================= ① 顶部标题区 ================= -->
+  <div class="top">
+    <h1>影像与文学讨论夜 · Film &amp; Literature Talk</h1>
+    <p>第 12 期 · 2026 年 12 月 5 日（周六）18:30 — 21:00</p>
+    <p>山东师范大学长清湖校区 · 图书馆四楼 3D 视听室</p>
+  </div>
+
+  <!-- ================= ② 活动介绍区 ================= -->
+  <div class="intro">
+    <h2 id="intro">光落下来的时候，字就醒了</h2>
+    <p>
+      影像与文学讨论夜是每月一次的固定聚会，十二期以来只做一件事：把一部电影和一部小说并排放着读。我们从《千与千寻》里那列开往海面的电车出发，去看文字说不清的东西如何被光影说清；也从《小王子》里那朵被玻璃罩罩住的花出发，去问一句“驯养”到底意味着什么。这一次，主持人的位置空出来一半，留给坐在台下的你。
+    </p>
+    <p>
+      当晚分三段进行：三位分享者各用十二分钟讲一个“文字被影像改写”的小切口，之后是四十分钟的自由讨论与换座交流。不需要读完一整本书，也不需要看完一整部片子，只要带一个你想讲的故事来，讨论就能成立。
+    </p>
+    <p>
+      现场会循环播放《千与千寻》的片段和《小王子》的插画投影，座位按报名先后排列，六十个座位坐满即止。散场以后还有一小时的自由聊天时间，那盏灯不会马上关掉。
+    </p>
+    <p id="intro">
+      重要提示：本次活动完全免费，但需要提前报名占座，请于 12 月 3 日 24:00 前完成报名。入场从图书馆东侧楼梯上四楼，全程请保持安静，场内禁止饮食与摄影录像。
+    </p>
+  </div>
+
+  <!-- ================= ③ 活动报名信息表格区 ================= -->
+  <div class="signup">
+    <h3>本期报名名单与讨论主题</h3>
+    <table>
+      <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>年级 / 学院</th>
+        <th>讨论主题</th>
+        <th>报名状态</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>林书棠</td>
+        <td>2024 · 文学院</td>
+        <td>《千与千寻》：名字被拿走以后，我们还剩下什么</td>
+        <td>已确认</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Oliver Reed</td>
+        <td>2023 · 外国语学院</td>
+        <td>《The Little Prince》：三个英译本里的“驯养”</td>
+        <td>已确认</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>陈砚</td>
+        <td>2025 · 信息科学与工程学院</td>
+        <td>从小说到分镜：《活着》里被删掉的那两场死亡</td>
+        <td>已确认</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>周予安</td>
+        <td>2024 · 美术学院</td>
+        <td>契诃夫《带小狗的女人》与它的冷色调镜头</td>
+        <td>已确认</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>苏念</td>
+        <td>2025 · 音乐学院</td>
+        <td>《海上钢琴师》：音乐如何替一个人说话</td>
+        <td>候补</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>郑一苇</td>
+        <td>2023 · 新闻与传媒学院</td>
+        <td>《花样年华》里那句始终没被说出口的台词</td>
+        <td>已确认</td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <a href="https://hongchenwusdnu.github.io/bookstore/job4.html">→ 点此处查看往期讨论夜的现场照片与回顾</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ================= ④ 页面链接区 ================= -->
+  <div class="linkbox">
+    <div>
+      <a class="red" href="https://hongchenwusdnu.github.io/bookstore/job4.html">查看往期活动照片</a>
+      <a class="blue" href="https://nxn-bit.github.io/my_work_one/xiao-0408-work2.html">在线咨询活动详情</a>
+    </div>
+  </div>
+
+  <!-- ================= ⑤ 底部公告区 ================= -->
+  <div class="notice">
+    <h4>公告 · Notice</h4>
+    <p>
+      一、报名截止时间为 12 月 3 日 24:00。<br>
+      逾期报名请到现场候补区登记，开场后空出来的座位按候补顺序入场。
+    </p>
+    <p>
+      二、本期共读作品为电影《千与千寻》与小说《小王子》。<br>
+      建议提前看完、读完再来，讨论会多次回到这两部作品的细节。
+    </p>
+    <p>
+      三、图书馆四楼需要刷校园卡进入，请务必随身携带。<br>
+      如遇场地调整，会在报名群内与这个页面同时通知，请留意更新。
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
